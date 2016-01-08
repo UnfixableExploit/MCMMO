@@ -44,7 +44,8 @@ public class CustomBlockConfig extends ConfigLoader {
         }
     }
 
-    private void loadBlocks(String skillType, List<MaterialData> blockList) {
+    @SuppressWarnings("deprecation")
+	private void loadBlocks(String skillType, List<MaterialData> blockList) {
         if (needsUpdate) {
             return;
         }
