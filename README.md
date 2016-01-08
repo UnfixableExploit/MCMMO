@@ -1,6 +1,11 @@
-# My Forked version of MCMMO! ()
-# What this Fork contains!
-# Removed scoreboards, Changed the en_us stuff/the way it converts the chatcolors (no more [[YELLOW]] now &e), and other changes :D
+# My Forked version of MCMMO!
+What does this fork contain/do?
+#
+This fork contains the following
+Removed Scoreboards
+Renoved AutoUpdater
+Removed Other bits and bobs
+Changed lang stuff/ replaced the [[YELLOW]] with & chatchar because all the [[GRAY]] is stupid :'(
 
 # mcMMO
 ## The RPG lovers mod
