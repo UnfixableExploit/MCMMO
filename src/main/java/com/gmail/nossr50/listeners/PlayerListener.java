@@ -207,7 +207,8 @@ public class PlayerListener implements Listener {
      *
      * @param event The event to modify
      */
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @SuppressWarnings("deprecation")
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPlayerFishHighest(PlayerFishEvent event) {
         Player player = event.getPlayer();
 
@@ -300,7 +301,8 @@ public class PlayerListener implements Listener {
      *
      * @param event The event to modify
      */
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @SuppressWarnings("deprecation")
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPlayerPickupItem(PlayerPickupItemEvent event) {
         Player player = event.getPlayer();
 
@@ -390,11 +392,6 @@ public class PlayerListener implements Listener {
         if (plugin.isXPEventEnabled()) {
             player.sendMessage(LocaleLoader.getString("XPRate.Event", ExperienceConfig.getInstance().getExperienceGainsGlobalMultiplier()));
         }
-
-        if (Permissions.updateNotifications(player) && plugin.isUpdateAvailable()) {
-            player.sendMessage(LocaleLoader.getString("UpdateChecker.Outdated"));
-            player.sendMessage(LocaleLoader.getString("UpdateChecker.NewAvailable"));
-        }
     }
 
     /**
@@ -422,7 +419,8 @@ public class PlayerListener implements Listener {
      *
      * @param event The event to modify
      */
-    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+    @SuppressWarnings("deprecation")
+	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onPlayerInteractLowest(PlayerInteractEvent event) {
         Player player = event.getPlayer();
 

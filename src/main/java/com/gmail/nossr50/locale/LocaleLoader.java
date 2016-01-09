@@ -92,29 +92,38 @@ public final class LocaleLoader {
     }
 
     private static String addColors(String input) {
-        input = input.replaceAll("\\Q[[BLACK]]\\E", ChatColor.BLACK.toString());
-        input = input.replaceAll("\\Q[[DARK_BLUE]]\\E", ChatColor.DARK_BLUE.toString());
-        input = input.replaceAll("\\Q[[DARK_GREEN]]\\E", ChatColor.DARK_GREEN.toString());
-        input = input.replaceAll("\\Q[[DARK_AQUA]]\\E", ChatColor.DARK_AQUA.toString());
-        input = input.replaceAll("\\Q[[DARK_RED]]\\E", ChatColor.DARK_RED.toString());
-        input = input.replaceAll("\\Q[[DARK_PURPLE]]\\E", ChatColor.DARK_PURPLE.toString());
-        input = input.replaceAll("\\Q[[GOLD]]\\E", ChatColor.GOLD.toString());
-        input = input.replaceAll("\\Q[[GRAY]]\\E", ChatColor.GRAY.toString());
-        input = input.replaceAll("\\Q[[DARK_GRAY]]\\E", ChatColor.DARK_GRAY.toString());
-        input = input.replaceAll("\\Q[[BLUE]]\\E", ChatColor.BLUE.toString());
-        input = input.replaceAll("\\Q[[GREEN]]\\E", ChatColor.GREEN.toString());
-        input = input.replaceAll("\\Q[[AQUA]]\\E", ChatColor.AQUA.toString());
-        input = input.replaceAll("\\Q[[RED]]\\E", ChatColor.RED.toString());
-        input = input.replaceAll("\\Q[[LIGHT_PURPLE]]\\E", ChatColor.LIGHT_PURPLE.toString());
-        input = input.replaceAll("\\Q[[YELLOW]]\\E", ChatColor.YELLOW.toString());
-        input = input.replaceAll("\\Q[[WHITE]]\\E", ChatColor.WHITE.toString());
-        input = input.replaceAll("\\Q[[BOLD]]\\E", ChatColor.BOLD.toString());
-        input = input.replaceAll("\\Q[[UNDERLINE]]\\E", ChatColor.UNDERLINE.toString());
-        input = input.replaceAll("\\Q[[ITALIC]]\\E", ChatColor.ITALIC.toString());
-        input = input.replaceAll("\\Q[[STRIKE]]\\E", ChatColor.STRIKETHROUGH.toString());
-        input = input.replaceAll("\\Q[[MAGIC]]\\E", ChatColor.MAGIC.toString());
-        input = input.replaceAll("\\Q[[RESET]]\\E", ChatColor.RESET.toString());
-
-        return input;
+    	// Lets replace this with more modern way ... [[BLACK]] is annoying like hell
+    	input = ChatColor.translateAlternateColorCodes('&', input);
+    	// Lets add a prefix because #YOLO
+    	String Prefix = ChatColor.translateAlternateColorCodes('&', "&c> &f"); // Add a config option for this later!
+    	// Lets put them together :'D
+    	String Text = Prefix + input;
+    	
+    	// The Old way
+        //input = input.replaceAll("\\Q[[BLACK]]\\E", ChatColor.BLACK.toString());
+        //input = input.replaceAll("\\Q[[DARK_BLUE]]\\E", ChatColor.DARK_BLUE.toString());
+        //input = input.replaceAll("\\Q[[DARK_GREEN]]\\E", ChatColor.DARK_GREEN.toString());
+        //input = input.replaceAll("\\Q[[DARK_AQUA]]\\E", ChatColor.DARK_AQUA.toString());
+        //input = input.replaceAll("\\Q[[DARK_RED]]\\E", ChatColor.DARK_RED.toString());
+        //input = input.replaceAll("\\Q[[DARK_PURPLE]]\\E", ChatColor.DARK_PURPLE.toString());
+        //input = input.replaceAll("\\Q[[GOLD]]\\E", ChatColor.GOLD.toString());
+        //input = input.replaceAll("\\Q[[GRAY]]\\E", ChatColor.GRAY.toString());
+        //input = input.replaceAll("\\Q[[DARK_GRAY]]\\E", ChatColor.DARK_GRAY.toString());
+        //input = input.replaceAll("\\Q[[BLUE]]\\E", ChatColor.BLUE.toString());
+        //input = input.replaceAll("\\Q[[GREEN]]\\E", ChatColor.GREEN.toString());
+        //input = input.replaceAll("\\Q[[AQUA]]\\E", ChatColor.AQUA.toString());
+        //input = input.replaceAll("\\Q[[RED]]\\E", ChatColor.RED.toString());
+        //input = input.replaceAll("\\Q[[LIGHT_PURPLE]]\\E", ChatColor.LIGHT_PURPLE.toString());
+        //input = input.replaceAll("\\Q[[YELLOW]]\\E", ChatColor.YELLOW.toString());
+        //input = input.replaceAll("\\Q[[WHITE]]\\E", ChatColor.WHITE.toString());
+        //input = input.replaceAll("\\Q[[BOLD]]\\E", ChatColor.BOLD.toString());
+        //input = input.replaceAll("\\Q[[UNDERLINE]]\\E", ChatColor.UNDERLINE.toString());
+        //input = input.replaceAll("\\Q[[ITALIC]]\\E", ChatColor.ITALIC.toString());
+        //input = input.replaceAll("\\Q[[STRIKE]]\\E", ChatColor.STRIKETHROUGH.toString());
+        //input = input.replaceAll("\\Q[[MAGIC]]\\E", ChatColor.MAGIC.toString());
+        //input = input.replaceAll("\\Q[[RESET]]\\E", ChatColor.RESET.toString());
+    	
+    	// Return the new stuff :D
+        return Text;
     }
 }
