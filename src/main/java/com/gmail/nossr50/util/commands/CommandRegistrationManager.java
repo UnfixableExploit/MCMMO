@@ -14,7 +14,6 @@ import com.gmail.nossr50.commands.McgodCommand;
 import com.gmail.nossr50.commands.McmmoCommand;
 import com.gmail.nossr50.commands.McnotifyCommand;
 import com.gmail.nossr50.commands.McrefreshCommand;
-import com.gmail.nossr50.commands.McscoreboardCommand;
 import com.gmail.nossr50.commands.MobhealthCommand;
 import com.gmail.nossr50.commands.XprateCommand;
 import com.gmail.nossr50.commands.chat.AdminChatCommand;
@@ -391,16 +390,6 @@ public final class CommandRegistrationManager {
         command.setExecutor(new MobhealthCommand());
     }
 
-    private static void registerMcscoreboardCommand() {
-        PluginCommand command = mcMMO.p.getCommand("mcscoreboard");
-        command.setDescription("Change the current mcMMO scoreboard being displayed"); //TODO: Localize
-        command.setPermission("mcmmo.commands.mcscoreboard");
-        command.setPermissionMessage(permissionsMessage);
-        command.setUsage(LocaleLoader.getString("Commands.Usage.1", "mcscoreboard", "<CLEAR | KEEP>"));
-        command.setUsage(command.getUsage() + "\n" + LocaleLoader.getString("Commands.Usage.2", "mcscoreboard", "time", "<seconds>"));
-        command.setExecutor(new McscoreboardCommand());
-    }
-
     private static void registerKrakenCommand() {
         PluginCommand command = mcMMO.p.getCommand("kraken");
         command.setDescription("Unleash the kraken!"); //TODO: Localize
@@ -428,7 +417,6 @@ public final class CommandRegistrationManager {
         registerMcmmoCommand();
         registerMcnotifyCommand();
         registerMcrefreshCommand();
-        registerMcscoreboardCommand();
         registerMobhealthCommand();
         registerXprateCommand();
 

@@ -526,7 +526,8 @@ public final class SQLDatabaseManager implements DatabaseManager {
         return loadPlayerProfile(playerName, uuid, create, true);
     }
 
-    private PlayerProfile loadPlayerProfile(String playerName, UUID uuid, boolean create, boolean retry) {
+    @SuppressWarnings("deprecation")
+	private PlayerProfile loadPlayerProfile(String playerName, UUID uuid, boolean create, boolean retry) {
         PreparedStatement statement = null;
         Connection connection = null;
         ResultSet resultSet = null;

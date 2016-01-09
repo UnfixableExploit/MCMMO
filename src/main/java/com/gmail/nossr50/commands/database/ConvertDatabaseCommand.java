@@ -16,7 +16,8 @@ import com.gmail.nossr50.runnables.player.PlayerProfileLoadingTask;
 import com.gmail.nossr50.util.player.UserManager;
 
 public class ConvertDatabaseCommand implements CommandExecutor {
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         switch (args.length) {
             case 2:

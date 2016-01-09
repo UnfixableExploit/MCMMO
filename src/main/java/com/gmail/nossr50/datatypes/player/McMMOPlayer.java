@@ -7,7 +7,6 @@ import java.util.UUID;
 
 import com.gmail.nossr50.runnables.skills.BleedTimerTask;
 import com.gmail.nossr50.util.player.UserManager;
-import com.gmail.nossr50.util.scoreboards.ScoreboardManager;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -899,7 +898,6 @@ public class McMMOPlayer {
         }
 
         UserManager.remove(thisPlayer);
-        ScoreboardManager.teardownPlayer(thisPlayer);
 
         if (inParty()) {
             party.removeOnlineMember(thisPlayer);

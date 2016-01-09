@@ -18,12 +18,12 @@ import com.gmail.nossr50.locale.LocaleLoader;
 import com.gmail.nossr50.util.Permissions;
 import com.gmail.nossr50.util.commands.CommandUtils;
 import com.gmail.nossr50.util.player.UserManager;
-import com.gmail.nossr50.util.scoreboards.ScoreboardManager;
 
 import com.google.common.collect.ImmutableList;
 
 public class InspectCommand implements TabExecutor {
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         switch (args.length) {
             case 1:
@@ -41,14 +41,9 @@ public class InspectCommand implements TabExecutor {
                     if (CommandUtils.inspectOffline(sender, profile, Permissions.inspectOffline(sender))) {
                         return true;
                     }
-
-                    if (sender instanceof Player && Config.getInstance().getInspectUseBoard()) {
-                        ScoreboardManager.enablePlayerInspectScoreboard((Player) sender, profile);
-
                         if (!Config.getInstance().getInspectUseChat()) {
                             return true;
                         }
-                    }
 
                     sender.sendMessage(LocaleLoader.getString("Inspect.OfflineStats", playerName));
 
@@ -81,13 +76,9 @@ public class InspectCommand implements TabExecutor {
                         return true;
                     }
 
-                    if (sender instanceof Player && Config.getInstance().getInspectUseBoard()) {
-                        ScoreboardManager.enablePlayerInspectScoreboard((Player) sender, mcMMOPlayer.getProfile());
-
                         if (!Config.getInstance().getInspectUseChat()) {
                             return true;
                         }
-                    }
 
                     sender.sendMessage(LocaleLoader.getString("Inspect.Stats", target.getName()));
                     CommandUtils.printGatheringSkills(target, sender);

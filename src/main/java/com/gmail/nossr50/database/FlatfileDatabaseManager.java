@@ -32,8 +32,6 @@ import com.gmail.nossr50.runnables.database.UUIDUpdateAsyncTask;
 import com.gmail.nossr50.util.Misc;
 import com.gmail.nossr50.util.StringUtils;
 
-import org.apache.commons.lang.ArrayUtils;
-
 public final class FlatfileDatabaseManager implements DatabaseManager {
     private final HashMap<SkillType, List<PlayerStat>> playerStatHash = new HashMap<SkillType, List<PlayerStat>>();
     private final List<PlayerStat> powerLevels = new ArrayList<PlayerStat>();
@@ -120,7 +118,8 @@ public final class FlatfileDatabaseManager implements DatabaseManager {
         mcMMO.p.getLogger().info("Purged " + purgedUsers + " users from the database.");
     }
 
-    public void purgeOldUsers() {
+    @SuppressWarnings("deprecation")
+	public void purgeOldUsers() {
         int removedPlayers = 0;
         long currentTime = System.currentTimeMillis();
 
@@ -458,7 +457,8 @@ public final class FlatfileDatabaseManager implements DatabaseManager {
         return loadPlayerProfile("", uuid, false);
     }
 
-    public PlayerProfile loadPlayerProfile(String playerName, UUID uuid, boolean create) {
+    @SuppressWarnings("deprecation")
+	public PlayerProfile loadPlayerProfile(String playerName, UUID uuid, boolean create) {
         BufferedReader in = null;
         String usersFilePath = mcMMO.getUsersFilePath();
 

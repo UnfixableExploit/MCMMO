@@ -50,8 +50,6 @@ public class McImportCommand implements CommandExecutor {
 
             String line;
             String materialName;
-            String modName;
-
             // While not at the end of the file
             while ((line = in.readLine()) != null) {
                 String[] split1 = line.split("material ");

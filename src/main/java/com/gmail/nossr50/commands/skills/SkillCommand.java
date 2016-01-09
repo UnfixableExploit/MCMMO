@@ -11,7 +11,6 @@ import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 
 import com.gmail.nossr50.config.AdvancedConfig;
-import com.gmail.nossr50.config.Config;
 import com.gmail.nossr50.datatypes.player.McMMOPlayer;
 import com.gmail.nossr50.datatypes.skills.SecondaryAbility;
 import com.gmail.nossr50.datatypes.skills.SkillType;
@@ -22,7 +21,6 @@ import com.gmail.nossr50.util.Permissions;
 import com.gmail.nossr50.util.StringUtils;
 import com.gmail.nossr50.util.commands.CommandUtils;
 import com.gmail.nossr50.util.player.UserManager;
-import com.gmail.nossr50.util.scoreboards.ScoreboardManager;
 import com.gmail.nossr50.util.skills.PerksUtils;
 
 import com.google.common.collect.ImmutableList;
@@ -63,10 +61,6 @@ public abstract class SkillCommand implements TabExecutor {
 
                 permissionsCheck(player);
                 dataCalculations(player, skillValue, isLucky);
-
-                if (Config.getInstance().getSkillUseBoard()) {
-                    ScoreboardManager.enablePlayerSkillScoreboard(player, skill);
-                }
 
                 if (!skill.isChildSkill()) {
                     player.sendMessage(LocaleLoader.getString("Skills.Header", skillName));

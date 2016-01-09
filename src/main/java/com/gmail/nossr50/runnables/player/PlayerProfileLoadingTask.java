@@ -9,10 +9,8 @@ import com.gmail.nossr50.config.Config;
 import com.gmail.nossr50.datatypes.player.McMMOPlayer;
 import com.gmail.nossr50.datatypes.player.PlayerProfile;
 import com.gmail.nossr50.locale.LocaleLoader;
-import com.gmail.nossr50.runnables.commands.McScoreboardKeepTask;
 import com.gmail.nossr50.util.Misc;
 import com.gmail.nossr50.util.player.UserManager;
-import com.gmail.nossr50.util.scoreboards.ScoreboardManager;
 
 public class PlayerProfileLoadingTask extends BukkitRunnable {
     private static final int MAX_TRIES = 5;
@@ -77,15 +75,9 @@ public class PlayerProfileLoadingTask extends BukkitRunnable {
             mcMMOPlayer.setupPartyData();
             UserManager.track(mcMMOPlayer);
             mcMMOPlayer.actualizeRespawnATS();
-            ScoreboardManager.setupPlayer(player);
 
             if (Config.getInstance().getShowProfileLoadedMessage()) {
                 player.sendMessage(LocaleLoader.getString("Profile.Loading.Success"));
-            }
-
-            if (Config.getInstance().getShowStatsAfterLogin()) {
-                ScoreboardManager.enablePlayerStatsScoreboard(player);
-                new McScoreboardKeepTask(player).runTaskLater(mcMMO.p, 1 * Misc.TICK_CONVERSION_FACTOR);
             }
         }
     }

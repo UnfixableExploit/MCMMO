@@ -153,6 +153,8 @@ public class AprilCommand implements TabExecutor {
             case PIGGY:
                 messages.add(LocaleLoader.getString("Effects.Template", "Carrot Turbo", "Supercharge your pigs with carrots"));
                 break;
+		default:
+			break;
         }
 
         return messages;
@@ -198,6 +200,8 @@ public class AprilCommand implements TabExecutor {
             case PIGGY:
                 messages.add(LocaleLoader.formatString("[[RED]]Carrot Turbo Boost: [[YELLOW]]{0}%", decimal.format(Misc.getRandom().nextInt(80)) + 10));
                 break;
+		default:
+			break;
         }
 
         return messages;

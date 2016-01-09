@@ -40,7 +40,6 @@ import com.gmail.nossr50.runnables.database.UserPurgeTask;
 import com.gmail.nossr50.runnables.party.PartyAutoKickTask;
 import com.gmail.nossr50.runnables.player.ClearRegisteredXPGainTask;
 import com.gmail.nossr50.runnables.player.PlayerProfileLoadingTask;
-import com.gmail.nossr50.runnables.player.PowerLevelUpdatingTask;
 import com.gmail.nossr50.runnables.skills.BleedTimerTask;
 import com.gmail.nossr50.skills.alchemy.Alchemy;
 import com.gmail.nossr50.skills.child.ChildConfig;
@@ -62,7 +61,6 @@ import com.gmail.nossr50.util.blockmeta.chunkmeta.ChunkManagerFactory;
 import com.gmail.nossr50.util.commands.CommandRegistrationManager;
 import com.gmail.nossr50.util.experience.FormulaManager;
 import com.gmail.nossr50.util.player.UserManager;
-import com.gmail.nossr50.util.scoreboards.ScoreboardManager;
 import com.gmail.nossr50.util.upgrade.UpgradeManager;
 
 import net.shatteredlands.shatt.backup.ZipLibrary;
@@ -171,7 +169,7 @@ public class mcMMO extends JavaPlugin {
                 new PlayerProfileLoadingTask(player).runTaskLaterAsynchronously(mcMMO.p, 1); // 1 Tick delay to ensure the player is marked as online before we begin loading
             }
 
-            debug("Version " + getDescription().getVersion() + " is ENABLED!");
+            debug("Version " + getDescription().getVersion() + " Enabled!");
 
             scheduleTasks();
             CommandRegistrationManager.registerCommands();
@@ -183,13 +181,13 @@ public class mcMMO extends JavaPlugin {
             }
         }
         catch (Throwable t) {
-            getLogger().severe("There was an error while enabling mcMMO!");
+            getLogger().severe("ERROR: While trying to enabled!");
 
             if (!(t instanceof ExceptionInInitializerError)) {
                 t.printStackTrace();
             }
             else {
-                getLogger().info("Please do not replace the mcMMO jar while the server is running.");
+                getLogger().info("Please dont replace the jar-file while the server is active. Please stop the server then replace the jar-file! <3");
             }
 
             getServer().getPluginManager().disablePlugin(this);
@@ -206,17 +204,19 @@ public class mcMMO extends JavaPlugin {
             UserManager.saveAll();      // Make sure to save player information if the server shuts down
             UserManager.clearAll();
             PartyManager.saveParties(); // Save our parties
-            ScoreboardManager.teardownAll();
             formulaManager.saveFormula();
             holidayManager.saveAnniversaryFiles();
             placeStore.saveAll();       // Save our metadata
             placeStore.cleanUp();       // Cleanup empty metadata stores
+            // Set the instance to null (If there are memory leaks this should maybe fix it :( no idea ... :D)
+            p = null;
+            // Also no idea if this is already set to null need to investigate :P
         }
         catch (NullPointerException e) {}
 
-        debug("Canceling all tasks...");
+        debug("Attempting to stop tasks!");
         getServer().getScheduler().cancelTasks(this); // This removes our tasks
-        debug("Unregister all events...");
+        debug("Attempting to unregister events!");
         HandlerList.unregisterAll(this); // Cancel event registrations
 
         if (Config.getInstance().getBackupsEnabled()) {
@@ -230,7 +230,7 @@ public class mcMMO extends JavaPlugin {
             catch (Throwable e) {
                 if (e instanceof NoClassDefFoundError) {
                     getLogger().severe("Backup class not found!");
-                    getLogger().info("Please do not replace the mcMMO jar while the server is running.");
+                    getLogger().info("Please dont replace the jar-file while the server is active. Please stop the server then replace the jar-file! <3");
                 }
                 else {
                     getLogger().severe(e.toString());
@@ -239,7 +239,7 @@ public class mcMMO extends JavaPlugin {
         }
 
         databaseManager.onDisable();
-        debug("Was disabled."); // How informative!
+        debug("We have now disabled!"); // How informative!
     }
 
     public static String getMainDirectory() {
@@ -472,9 +472,6 @@ public class mcMMO extends JavaPlugin {
         else if (kickIntervalTicks > 0) {
             new PartyAutoKickTask().runTaskTimer(this, kickIntervalTicks, kickIntervalTicks);
         }
-
-        // Update power level tag scoreboards
-        new PowerLevelUpdatingTask().runTaskTimer(this, 2 * Misc.TICK_CONVERSION_FACTOR, 2 * Misc.TICK_CONVERSION_FACTOR);
 
         if (getHolidayManager().nearingAprilFirst()) {
             new CheckDateTask().runTaskTimer(this, 10L * Misc.TICK_CONVERSION_FACTOR, 1L * 60L * 60L * Misc.TICK_CONVERSION_FACTOR);

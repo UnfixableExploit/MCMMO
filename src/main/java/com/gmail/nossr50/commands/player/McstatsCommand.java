@@ -11,7 +11,6 @@ import com.gmail.nossr50.config.Config;
 import com.gmail.nossr50.locale.LocaleLoader;
 import com.gmail.nossr50.util.commands.CommandUtils;
 import com.gmail.nossr50.util.player.UserManager;
-import com.gmail.nossr50.util.scoreboards.ScoreboardManager;
 
 import com.google.common.collect.ImmutableList;
 
@@ -30,13 +29,9 @@ public class McstatsCommand implements TabExecutor {
             case 0:
                 Player player = (Player) sender;
 
-                if (Config.getInstance().getStatsUseBoard()) {
-                    ScoreboardManager.enablePlayerStatsScoreboard(player);
-
                     if (!Config.getInstance().getStatsUseChat()) {
                         return true;
                     }
-                }
 
                 player.sendMessage(LocaleLoader.getString("Stats.Own.Stats"));
                 player.sendMessage(LocaleLoader.getString("mcMMO.NoSkillNote"));

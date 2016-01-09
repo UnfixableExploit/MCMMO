@@ -11,7 +11,6 @@ import com.gmail.nossr50.mcMMO;
 import com.gmail.nossr50.datatypes.database.PlayerStat;
 import com.gmail.nossr50.datatypes.skills.SkillType;
 import com.gmail.nossr50.locale.LocaleLoader;
-import com.gmail.nossr50.util.scoreboards.ScoreboardManager;
 
 /**
  * Display the results of {@link MctopCommandAsyncTask} to the sender.
@@ -21,22 +20,18 @@ public class MctopCommandDisplayTask extends BukkitRunnable {
     private final CommandSender sender;
     private final SkillType skill;
     private final int page;
-    private final boolean useBoard, useChat;
+    private final boolean useChat;
 
-    MctopCommandDisplayTask(List<PlayerStat> userStats, int page, SkillType skill, CommandSender sender, boolean useBoard, boolean useChat) {
+    MctopCommandDisplayTask(List<PlayerStat> userStats, int page, SkillType skill, CommandSender sender, boolean useChat) {
         this.userStats = userStats;
         this.page = page;
         this.skill = skill;
         this.sender = sender;
-        this.useBoard = useBoard;
         this.useChat = useChat;
     }
 
     @Override
     public void run() {
-        if (useBoard) {
-            displayBoard();
-        }
 
         if (useChat) {
             displayChat();
@@ -64,15 +59,6 @@ public class MctopCommandDisplayTask extends BukkitRunnable {
             // 12. Playername - skill value
             sender.sendMessage(String.format("%2d. %s%s - %s%s", place, ChatColor.GREEN, stat.name, ChatColor.WHITE, stat.statVal));
             place++;
-        }
-    }
-
-    private void displayBoard() {
-        if (skill == null) {
-            ScoreboardManager.showTopPowerScoreboard((Player) sender, page, userStats);
-        }
-        else {
-            ScoreboardManager.showTopScoreboard((Player) sender, skill, page, userStats);
         }
     }
 }

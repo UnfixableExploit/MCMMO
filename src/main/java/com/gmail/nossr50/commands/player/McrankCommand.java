@@ -22,7 +22,8 @@ import com.gmail.nossr50.util.player.UserManager;
 import com.google.common.collect.ImmutableList;
 
 public class McrankCommand implements TabExecutor {
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         switch (args.length) {
             case 0:
@@ -107,9 +108,8 @@ public class McrankCommand implements TabExecutor {
             mcMMOPlayer.actualizeDatabaseATS();
         }
 
-        boolean useBoard = (sender instanceof Player) && (Config.getInstance().getRankUseBoard());
-        boolean useChat = !useBoard || Config.getInstance().getRankUseChat();
+        boolean useChat = Config.getInstance().getRankUseChat();
 
-        new McrankCommandAsyncTask(playerName, sender, useBoard, useChat).runTaskAsynchronously(mcMMO.p);
+        new McrankCommandAsyncTask(playerName, sender, useChat).runTaskAsynchronously(mcMMO.p);
     }
 }

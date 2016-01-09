@@ -28,7 +28,8 @@ import com.google.common.collect.ImmutableList;
  * value/quantity argument is removed.
  */
 public class SkillresetCommand implements TabExecutor {
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         SkillType skill;
         switch (args.length) {

@@ -13,7 +13,6 @@ import com.gmail.nossr50.datatypes.skills.AbilityType;
 import com.gmail.nossr50.locale.LocaleLoader;
 import com.gmail.nossr50.util.commands.CommandUtils;
 import com.gmail.nossr50.util.player.UserManager;
-import com.gmail.nossr50.util.scoreboards.ScoreboardManager;
 
 import com.google.common.collect.ImmutableList;
 
@@ -32,13 +31,9 @@ public class MccooldownCommand implements TabExecutor {
             case 0:
                 Player player = (Player) sender;
 
-                if (Config.getInstance().getCooldownUseBoard()) {
-                    ScoreboardManager.enablePlayerCooldownScoreboard(player);
-
                     if (!Config.getInstance().getCooldownUseChat()) {
                         return true;
                     }
-                }
 
                 McMMOPlayer mcMMOPlayer = UserManager.getPlayer(player);
 

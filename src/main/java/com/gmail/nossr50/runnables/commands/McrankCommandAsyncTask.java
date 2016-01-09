@@ -14,19 +14,14 @@ import org.apache.commons.lang.Validate;
 public class McrankCommandAsyncTask extends BukkitRunnable {
     private final String playerName;
     private final CommandSender sender;
-    private final boolean useBoard, useChat;
+    private final boolean useChat;
 
-    public McrankCommandAsyncTask(String playerName, CommandSender sender, boolean useBoard, boolean useChat) {
-        Validate.isTrue(useBoard || useChat, "Attempted to start a rank retrieval with both board and chat off");
+    public McrankCommandAsyncTask(String playerName, CommandSender sender, boolean useChat) {
+        Validate.isTrue(useChat, "Attempted to start a rank retrieval with both board and chat off");
         Validate.notNull(sender, "Attempted to start a rank retrieval with no recipient");
-
-        if (useBoard) {
-            Validate.isTrue(sender instanceof Player, "Attempted to start a rank retrieval displaying scoreboard to a non-player");
-        }
 
         this.playerName = playerName;
         this.sender = sender;
-        this.useBoard = useBoard;
         this.useChat = useChat;
     }
 
@@ -34,7 +29,7 @@ public class McrankCommandAsyncTask extends BukkitRunnable {
     public void run() {
         Map<SkillType, Integer> skills = mcMMO.getDatabaseManager().readRank(playerName);
 
-        new McrankCommandDisplayTask(skills, sender, playerName, useBoard, useChat).runTaskLater(mcMMO.p, 1);
+        new McrankCommandDisplayTask(skills, sender, playerName, useChat).runTaskLater(mcMMO.p, 1);
     }
 }
 
