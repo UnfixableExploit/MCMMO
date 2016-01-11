@@ -6,7 +6,9 @@ Removed Scoreboards
 Renoved AutoUpdater
 Removed Other bits and bobs
 Changed lang stuff/ replaced the [[YELLOW]] with & chatchar because all the [[GRAY]] is stupid :'(
-
+#
+If you compile this make sure to turn scoreboard stuff off and all chat stuff on or an error will pop up :)
+#
 # mcMMO
 ## The RPG lovers mod
 
