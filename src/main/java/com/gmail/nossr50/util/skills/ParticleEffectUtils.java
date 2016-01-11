@@ -85,7 +85,8 @@ public final class ParticleEffectUtils {
         }
 
         if (hasHeadRoom(player)) {
-            fireworkParticleShower(player, Color.GREEN);
+            fireworkParticleShower(player, Color.FUCHSIA);
+            playSmokeEffect(player);
         }
     }
 
@@ -95,7 +96,8 @@ public final class ParticleEffectUtils {
         }
 
         if (hasHeadRoom(player)) {
-            fireworkParticleShower(player, Color.RED);
+            fireworkParticleShower(player, Color.SILVER);
+            playSmokeEffect(player);
         }
     }
 

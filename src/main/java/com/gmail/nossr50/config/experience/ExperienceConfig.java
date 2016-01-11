@@ -228,7 +228,8 @@ public class ExperienceConfig extends AutoUpdateConfigLoader {
     public double getArcheryDistanceMultiplier() { return config.getDouble("Experience.Archery.Distance_Multiplier", 0.025); }
 
     /* Excavation */
-    public int getDirtAndSandXp(MaterialData data) {
+    @SuppressWarnings("deprecation")
+	public int getDirtAndSandXp(MaterialData data) {
         Material type = data.getItemType();
 
         if (type == Material.DIRT) {
@@ -263,7 +264,8 @@ public class ExperienceConfig extends AutoUpdateConfigLoader {
     }
 
     /* Fishing */
-    public int getFishXp(MaterialData data) {
+    @SuppressWarnings("deprecation")
+	public int getFishXp(MaterialData data) {
         switch (data.getData()) {
             case 0x0:
                 return config.getInt("Experience.Fishing.Raw_Fish", 800);
@@ -285,7 +287,8 @@ public class ExperienceConfig extends AutoUpdateConfigLoader {
     public int getFishingShakeXP() { return config.getInt("Experience.Fishing.Shake", 50); }
 
     /* Herbalism */
-    public int getFlowerAndGrassXp(MaterialData data) {
+    @SuppressWarnings("deprecation")
+	public int getFlowerAndGrassXp(MaterialData data) {
         Material type = data.getItemType();
 
         if (type == Material.RED_ROSE) {

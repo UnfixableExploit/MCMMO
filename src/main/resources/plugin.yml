@@ -24,8 +24,10 @@ commands:
     mcmmo:
         description: Shows a brief mod description
     mctop:
+        aliases: [leaderboard]
         description: Show mcMMO leader boards
     mcrank:
+        aliases: [rank]
         description: Show mcMMO ranking for a player
     addxp:
         description: Add mcMMO XP to a user
@@ -43,7 +45,7 @@ commands:
     mcimport:
         description: Import mod config files
     mcstats:
-        aliases: [stats]
+        aliases: [stats, mystats, checklevel]
         description: Shows your mcMMO stats and xp
     mcremove:
         description: Remove a user from the database
@@ -54,6 +56,7 @@ commands:
     party:
         description: Create/join a party
     inspect:
+        aliases: [check]
         description: View detailed mcMMO info on another player
     mmoshowdb:
         description: Show the name of the current database type (for later use with /mmoupdate)
@@ -106,14 +109,11 @@ commands:
         aliases: [mcvampirism]
         description: Modify the mcMMO vampirism percentage or toggle vampirism mode on/off
     mcnotify:
-        aliases: [notify]
+        aliases: [skillinfotoggle]
         description: Toggle mcMMO abilities chat display notifications on/off
     mobhealth:
         aliases: [mcmobhealth]
         description: Change the style of the mob healthbar
-    mcscoreboard:
-        aliases: [mcsb]
-        description: Manage your mcMMO Scoreboard
     kraken:
         aliases: [mckraken]
         description: Unleash the kraken!

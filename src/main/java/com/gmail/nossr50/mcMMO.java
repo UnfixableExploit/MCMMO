@@ -210,7 +210,7 @@ public class mcMMO extends JavaPlugin {
             placeStore.cleanUp();       // Cleanup empty metadata stores
             // Set the instance to null (If there are memory leaks this should maybe fix it :( no idea ... :D)
             p = null;
-            // Also no idea if this is already set to null need to investigate :P
+            // Also no idea if this is already set to null on shutdown need to investigate :P
         }
         catch (NullPointerException e) {}
 
@@ -239,7 +239,7 @@ public class mcMMO extends JavaPlugin {
         }
 
         databaseManager.onDisable();
-        debug("We have now disabled!"); // How informative!
+        debug("We have now disabled!"); // How informative! ikr! <3
     }
 
     public static String getMainDirectory() {

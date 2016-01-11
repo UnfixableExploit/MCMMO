@@ -3,9 +3,6 @@ package com.gmail.nossr50.util;
 import java.text.DecimalFormat;
 
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.PluginDescriptionFile;
-
-import com.gmail.nossr50.mcMMO;
 import com.gmail.nossr50.config.Config;
 import com.gmail.nossr50.datatypes.skills.SkillType;
 import com.gmail.nossr50.locale.LocaleLoader;
@@ -13,30 +10,15 @@ import com.gmail.nossr50.util.skills.PerksUtils;
 
 public final class Motd {
     public static final String PERK_PREFIX = LocaleLoader.getString("MOTD.PerksPrefix") + " ";
-    private static final PluginDescriptionFile pluginDescription = mcMMO.p.getDescription();
 
     private Motd() {}
 
     public static void displayAll(Player player) {
-        displayVersion(player, pluginDescription.getVersion());
         displayHardcoreSettings(player);
         displayXpPerks(player);
         displayCooldownPerks(player);
         displayActivationPerks(player);
         displayLuckyPerks(player);
-        displayWebsite(player, pluginDescription.getWebsite());
-    }
-
-    /**
-     * Display version info.
-     *
-     * @param player  Target player
-     * @param version Plugin version
-     */
-    public static void displayVersion(Player player, String version) {
-        if (Permissions.showversion(player)) {
-            player.sendMessage(LocaleLoader.getString("MOTD.Version", version));
-        }
     }
 
     /**
@@ -132,15 +114,5 @@ public final class Motd {
                 return;
             }
         }
-    }
-
-    /**
-     * Display website info.
-     *
-     * @param player  Target player
-     * @param website Plugin website
-     */
-    public static void displayWebsite(Player player, String website) {
-        player.sendMessage(LocaleLoader.getString("MOTD.Website", website));
     }
 }

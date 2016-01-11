@@ -19,7 +19,8 @@ public class CustomEntityConfig extends ConfigLoader {
         loadKeys();
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     protected void loadKeys() {
         if (config.getConfigurationSection("Hostile") != null) {
             backup();

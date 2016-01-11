@@ -28,7 +28,8 @@ public class HiddenConfig {
         return instance;
     }
 
-    public void load() {
+    @SuppressWarnings("deprecation")
+	public void load() {
         if (mcMMO.p.getResource(fileName) != null) {
             config = YamlConfiguration.loadConfiguration(mcMMO.p.getResource(fileName));
             chunkletsEnabled = config.getBoolean("Options.Chunklets", true);
