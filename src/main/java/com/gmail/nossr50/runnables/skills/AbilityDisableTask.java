@@ -5,6 +5,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import com.gmail.nossr50.PacketMapChunk;
 import com.gmail.nossr50.mcMMO;
 import com.gmail.nossr50.config.Config;
 import com.gmail.nossr50.datatypes.player.McMMOPlayer;
@@ -63,15 +64,27 @@ public class AbilityDisableTask extends BukkitRunnable {
         new AbilityCooldownTask(mcMMOPlayer, ability).runTaskLaterAsynchronously(mcMMO.p, PerksUtils.handleCooldownPerks(player, ability.getCooldown()) * Misc.TICK_CONVERSION_FACTOR);
     }
 
-    private void resendChunkRadiusAt(Player player, int radius) {
+    @SuppressWarnings("deprecation")
+	private void resendChunkRadiusAt(Player player, int radius) {
+    	// Taken from skyost class we added in :D
+    	//for(final Chunk chunk1 : mmochunk) {
+    	//    for(final Player online : Bukkit.getOnlinePlayers()) {
+    	//        new PacketMapChunk(chunk).send(player);
+    	//    }
+    	//    world.refreshChunk(chunk.getX(), chunk.getZ());
+    	//}
+    	
         Chunk chunk = player.getLocation().getChunk();
         World world = player.getWorld();
-
+        
         int chunkX = chunk.getX();
         int chunkZ = chunk.getZ();
-
+        
+        
         for (int x = chunkX - radius; x < chunkX + radius; x++) {
             for (int z = chunkZ - radius; z < chunkZ + radius; z++) {
+            	
+            	new PacketMapChunk(chunk).send(player);
                 world.refreshChunk(x, z);
             }
         }

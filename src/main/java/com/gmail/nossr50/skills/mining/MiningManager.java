@@ -92,7 +92,8 @@ public class MiningManager extends SkillManager {
     /**
      * Detonate TNT for Blast Mining
      */
-    public void remoteDetonation() {
+    @SuppressWarnings("deprecation")
+	public void remoteDetonation() {
         Player player = getPlayer();
         Block targetBlock = player.getTargetBlock((HashSet<Byte>) BlockUtils.getTransparentBlocks(), BlastMining.MAXIMUM_REMOTE_DETONATION_DISTANCE);
 

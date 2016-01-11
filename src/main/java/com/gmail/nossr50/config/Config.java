@@ -57,45 +57,20 @@ public class Config extends AutoUpdateConfigLoader {
             reason.add("Mob_Healthbar.Display_Time cannot be 0! Set to -1 to disable or set a valid value.");
         }
 
-        /* Scoreboards */
-        if (getRankScoreboardTime() != -1 && getRankScoreboardTime() <= 0) {
-            reason.add("Scoreboard.Types.Rank.Display_Time should be greater than 0, or -1!");
+        if (!(getRankUseChat())) {
+            reason.add("Print in Scoreboard.Types.Rank must be true!");
         }
 
-        if (getStatsScoreboardTime() != -1 && getStatsScoreboardTime() <= 0) {
-            reason.add("Scoreboard.Types.Stats.Display_Time should be greater than 0, or -1!");
+        if (!(getTopUseChat())) {
+            reason.add("Print in Scoreboard.Types.Top must be true!");
         }
 
-        if (getTopScoreboardTime() != -1 && getTopScoreboardTime() <= 0) {
-            reason.add("Scoreboard.Types.Top.Display_Time should be greater than 0, or -1!");
+        if (!(getStatsUseChat())) {
+            reason.add("Print in Scoreboard.Types.Stats must be true!");
         }
 
-        if (getInspectScoreboardTime() != -1 && getInspectScoreboardTime() <= 0) {
-            reason.add("Scoreboard.Types.Inspect.Display_Time should be greater than 0, or -1!");
-        }
-
-        if (getSkillScoreboardTime() != -1 && getSkillScoreboardTime() <= 0) {
-            reason.add("Scoreboard.Types.Skill.Display_Time should be greater than 0, or -1!");
-        }
-
-        if (getSkillLevelUpTime() != -1 && getSkillScoreboardTime() <= 0) {
-            reason.add("Scoreboard.Types.Skill.Display_Time should be greater than 0, or -1!");
-        }
-
-        if (!(getRankUseChat() || getRankUseBoard())) {
-            reason.add("Either Board or Print in Scoreboard.Types.Rank must be true!");
-        }
-
-        if (!(getTopUseChat() || getTopUseBoard())) {
-            reason.add("Either Board or Print in Scoreboard.Types.Top must be true!");
-        }
-
-        if (!(getStatsUseChat() || getStatsUseBoard())) {
-            reason.add("Either Board or Print in Scoreboard.Types.Stats must be true!");
-        }
-
-        if (!(getInspectUseChat() || getInspectUseBoard())) {
-            reason.add("Either Board or Print in Scoreboard.Types.Inspect must be true!");
+        if (!(getInspectUseChat())) {
+            reason.add("Print in Scoreboard.Types.Inspect must be true!");
         }
 
         /* Database Purging */
@@ -242,13 +217,9 @@ public class Config extends AutoUpdateConfigLoader {
 
     /* General Settings */
     public String getLocale() { return config.getString("General.Locale", "en_us"); }
-    public boolean getMOTDEnabled() { return config.getBoolean("General.MOTD_Enabled", true); }
     public boolean getShowProfileLoadedMessage() { return config.getBoolean("General.Show_Profile_Loaded", true); }
     public boolean getDonateMessageEnabled() { return config.getBoolean("Commands.mcmmo.Donate_Message", true); }
     public int getSaveInterval() { return config.getInt("General.Save_Interval", 10); }
-    public boolean getStatsTrackingEnabled() { return config.getBoolean("General.Stats_Tracking", true); }
-    public boolean getUpdateCheckEnabled() { return config.getBoolean("General.Update_Check", true); }
-    public boolean getPreferBeta() { return config.getBoolean("General.Prefer_Beta", false); }
     public boolean getVerboseLoggingEnabled() { return config.getBoolean("General.Verbose_Logging", false); }
 
     public String getPartyChatPrefix() { return config.getString("Commands.partychat.Chat_Prefix_Format", "[[GREEN]]([[WHITE]]{0}[[GREEN]])"); }
@@ -263,7 +234,7 @@ public class Config extends AutoUpdateConfigLoader {
     public long getDatabasePlayerCooldown() { return config.getLong("Commands.Database.Player_Cooldown", 1750); }
 
     public boolean getLevelUpSoundsEnabled() { return config.getBoolean("General.LevelUp_Sounds", true); }
-    public boolean getRefreshChunksEnabled() { return config.getBoolean("General.Refresh_Chunks", false); }
+    public boolean getRefreshChunksEnabled() { return config.getBoolean("General.Refresh_Chunks", true); }
 
     /* Mob Healthbar */
     public MobHealthbarType getMobHealthbarDefault() {
@@ -275,40 +246,20 @@ public class Config extends AutoUpdateConfigLoader {
         }
     }
 
-    public int getMobHealthbarTime() { return config.getInt("Mob_Healthbar.Display_Time", 3); }
+    public int getMobHealthbarTime() { return config.getInt("Mob_Healthbar.Display_Time", 6); }
 
     /* Scoreboards */
-    public boolean getPowerLevelTagsEnabled() { return config.getBoolean("Scoreboard.Power_Level_Tags", false); }
-    public boolean getAllowKeepBoard() { return config.getBoolean("Scoreboard.Allow_Keep", true); }
-    public int getTipsAmount() { return config.getInt("Scoreboard.Tips_Amount", 5); }
-    public boolean getShowStatsAfterLogin() { return config.getBoolean("Scoreboard.Show_Stats_After_Login", false); }
-    public boolean getScoreboardRainbows() { return config.getBoolean("Scoreboard.Rainbows", false); }
     public boolean getShowAbilityNames() { return config.getBoolean("Scoreboard.Ability_Names", true); }
 
-    public boolean getRankUseChat() { return config.getBoolean("Scoreboard.Types.Rank.Print", false); }
-    public boolean getRankUseBoard() { return config.getBoolean("Scoreboard.Types.Rank.Board", true); }
-    public int getRankScoreboardTime() { return config.getInt("Scoreboard.Types.Rank.Display_Time", 10); }
+    public boolean getRankUseChat() { return config.getBoolean("Scoreboard.Types.Rank.Print", true); }
 
     public boolean getTopUseChat() { return config.getBoolean("Scoreboard.Types.Top.Print", true); }
-    public boolean getTopUseBoard() { return config.getBoolean("Scoreboard.Types.Top.Board", true); }
-    public int getTopScoreboardTime() { return config.getInt("Scoreboard.Types.Top.Display_Time", 15); }
 
     public boolean getStatsUseChat() { return config.getBoolean("Scoreboard.Types.Stats.Print", true); }
-    public boolean getStatsUseBoard() { return config.getBoolean("Scoreboard.Types.Stats.Board", true); }
-    public int getStatsScoreboardTime() { return config.getInt("Scoreboard.Types.Stats.Display_Time", 10); }
 
     public boolean getInspectUseChat() { return config.getBoolean("Scoreboard.Types.Inspect.Print", true); }
-    public boolean getInspectUseBoard() { return config.getBoolean("Scoreboard.Types.Inspect.Board", true); }
-    public int getInspectScoreboardTime() { return config.getInt("Scoreboard.Types.Inspect.Display_Time", 25); }
 
-    public boolean getCooldownUseChat() { return config.getBoolean("Scoreboard.Types.Cooldown.Print", false); }
-    public boolean getCooldownUseBoard() { return config.getBoolean("Scoreboard.Types.Cooldown.Board", true); }
-    public int getCooldownScoreboardTime() { return config.getInt("Scoreboard.Types.Cooldown.Display_Time", 41); }
-
-    public boolean getSkillUseBoard() { return config.getBoolean("Scoreboard.Types.Skill.Board", true); }
-    public int getSkillScoreboardTime() { return config.getInt("Scoreboard.Types.Skill.Display_Time", 30); }
-    public boolean getSkillLevelUpBoard() { return config.getBoolean("Scoreboard.Types.Skill.LevelUp_Board", true); }
-    public int getSkillLevelUpTime() { return config.getInt("Scoreboard.Types.Skill.LevelUp_Time", 5); }
+    public boolean getCooldownUseChat() { return config.getBoolean("Scoreboard.Types.Cooldown.Print", true); }
 
     /* Database Purging */
     public int getPurgeInterval() { return config.getInt("Database_Purging.Purge_Interval", -1); }
@@ -318,7 +269,7 @@ public class Config extends AutoUpdateConfigLoader {
     public boolean getBackupsEnabled() { return config.getBoolean("Backups.Enabled", true); }
     public boolean getKeepLast24Hours() { return config.getBoolean("Backups.Keep.Last_24_Hours", true); }
     public boolean getKeepDailyLastWeek() { return config.getBoolean("Backups.Keep.Daily_Last_Week", true); }
-    public boolean getKeepWeeklyPastMonth() { return config.getBoolean("Backups.Keep.Weekly_Past_Months", true); }
+    public boolean getKeepWeeklyPastMonth() { return config.getBoolean("Backups.Keep.Weekly_Past_Months", false); }
 
     /* mySQL */
     public boolean getUseMySQL() { return config.getBoolean("MySQL.Enabled", false); }

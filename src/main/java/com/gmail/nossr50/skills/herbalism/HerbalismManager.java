@@ -337,7 +337,8 @@ public class HerbalismManager extends SkillManager {
         new HerbalismBlockUpdaterTask(blockState).runTaskLater(mcMMO.p, 0);
     }
 
-    private boolean handleBlockState(BlockState blockState, boolean greenTerra) {
+    @SuppressWarnings("deprecation")
+	private boolean handleBlockState(BlockState blockState, boolean greenTerra) {
         byte greenThumbStage = getGreenThumbStage();
 
         blockState.setMetadata(mcMMO.greenThumbDataKey, new FixedMetadataValue(mcMMO.p, (int) (System.currentTimeMillis() / Misc.TIME_CONVERSION_FACTOR)));

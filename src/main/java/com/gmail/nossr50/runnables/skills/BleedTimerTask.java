@@ -18,7 +18,8 @@ public class BleedTimerTask extends BukkitRunnable {
     private final static int MAX_BLEED_TICKS = 10;
     private static Map<LivingEntity, Integer> bleedList = new HashMap<LivingEntity, Integer>();
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void run() {
         for (Iterator<Entry<LivingEntity, Integer>> bleedIterator = bleedList.entrySet().iterator(); bleedIterator.hasNext(); ) {
             Entry<LivingEntity, Integer> entry = bleedIterator.next();
@@ -63,6 +64,7 @@ public class BleedTimerTask extends BukkitRunnable {
                 }
 
                 CombatUtils.dealDamage(entity, damage);
+                //TODO lets make this look better!
                 ParticleEffectUtils.playBleedEffect(entity);
             }
         }
@@ -73,7 +75,8 @@ public class BleedTimerTask extends BukkitRunnable {
      *
      * @param entity LivingEntity to bleed out
      */
-    public static void bleedOut(LivingEntity entity) {
+    @SuppressWarnings("deprecation")
+	public static void bleedOut(LivingEntity entity) {
         if (bleedList.containsKey(entity)) {
             CombatUtils.dealDamage(entity, bleedList.get(entity) * 2);
             bleedList.remove(entity);

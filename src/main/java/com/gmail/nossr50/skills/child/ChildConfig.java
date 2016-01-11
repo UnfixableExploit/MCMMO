@@ -14,7 +14,8 @@ public class ChildConfig extends AutoUpdateConfigLoader {
         loadKeys();
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     protected void loadKeys() {
         config.setDefaults(YamlConfiguration.loadConfiguration(plugin.getResource("child.yml")));
 

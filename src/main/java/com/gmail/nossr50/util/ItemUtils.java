@@ -621,7 +621,8 @@ public final class ItemUtils {
      * @param item Item to check
      * @return true if the item is a mob drop, false otherwise
      */
-    public static boolean isMobDrop(ItemStack item) {
+    @SuppressWarnings("deprecation")
+	public static boolean isMobDrop(ItemStack item) {
         switch (item.getType()) {
             case STRING:
             case FEATHER:

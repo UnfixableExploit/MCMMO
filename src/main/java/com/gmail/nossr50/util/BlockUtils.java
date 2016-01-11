@@ -98,7 +98,8 @@ public final class BlockUtils {
      * @param blockState The {@link BlockState} of the block to check
      * @return true if the block can be made mossy, false otherwise
      */
-    public static boolean canMakeMossy(BlockState blockState) {
+    @SuppressWarnings("deprecation")
+	public static boolean canMakeMossy(BlockState blockState) {
         switch (blockState.getType()) {
             case COBBLESTONE:
             case DIRT:
@@ -121,7 +122,8 @@ public final class BlockUtils {
      * @param blockState The {@link BlockState} of the block to check
      * @return true if the block should affected by Green Terra, false otherwise
      */
-    public static boolean affectedByGreenTerra(BlockState blockState) {
+    @SuppressWarnings("deprecation")
+	public static boolean affectedByGreenTerra(BlockState blockState) {
         switch (blockState.getType()) {
             case BROWN_MUSHROOM:
             case CACTUS:
@@ -333,7 +335,8 @@ public final class BlockUtils {
      *
      * @return HashSet with the IDs of every transparent block
      */
-    public static HashSet<Byte> getTransparentBlocks() {
+    @SuppressWarnings("deprecation")
+	public static HashSet<Byte> getTransparentBlocks() {
         HashSet<Byte> transparentBlocks = new HashSet<Byte>();
 
         for (Material material : Material.values()) {

@@ -88,7 +88,8 @@ public final class CommandUtils {
      *
      * @return true if the player is online and a valid mcMMOPlayer object was found
      */
-    public static boolean checkPlayerExistence(CommandSender sender, String playerName, McMMOPlayer mcMMOPlayer) {
+    @SuppressWarnings("deprecation")
+	public static boolean checkPlayerExistence(CommandSender sender, String playerName, McMMOPlayer mcMMOPlayer) {
         if (mcMMOPlayer != null) {
             if (CommandUtils.hidden(sender, mcMMOPlayer.getPlayer(), false)) {
                 sender.sendMessage(LocaleLoader.getString("Commands.Offline"));

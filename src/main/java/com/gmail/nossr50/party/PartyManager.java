@@ -606,7 +606,8 @@ public final class PartyManager {
         }
     }
 
-    private static void loadAndUpgradeParties() {
+    @SuppressWarnings("deprecation")
+	private static void loadAndUpgradeParties() {
         YamlConfiguration partiesFile = YamlConfiguration.loadConfiguration(partyFile);
 
         if (!partyFile.renameTo(new File(mcMMO.getFlatFileDirectory() + "parties.yml.converted"))) {

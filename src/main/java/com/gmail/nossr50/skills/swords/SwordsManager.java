@@ -77,7 +77,8 @@ public class SwordsManager extends SkillManager {
      * @param attacker The {@link LivingEntity} being affected by the ability
      * @param damage The amount of damage initially dealt by the event
      */
-    public void counterAttackChecks(LivingEntity attacker, double damage) {
+    @SuppressWarnings("deprecation")
+	public void counterAttackChecks(LivingEntity attacker, double damage) {
         if (Swords.counterAttackRequiresBlock && !getPlayer().isBlocking()) {
             return;
         }

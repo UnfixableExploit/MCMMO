@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
@@ -33,7 +34,6 @@ import com.gmail.nossr50.listeners.PlayerListener;
 import com.gmail.nossr50.listeners.SelfListener;
 import com.gmail.nossr50.listeners.WorldListener;
 import com.gmail.nossr50.party.PartyManager;
-import com.gmail.nossr50.runnables.CheckDateTask;
 import com.gmail.nossr50.runnables.SaveTimerTask;
 import com.gmail.nossr50.runnables.backups.CleanBackupsTask;
 import com.gmail.nossr50.runnables.database.UserPurgeTask;
@@ -170,11 +170,12 @@ public class mcMMO extends JavaPlugin {
             }
 
             debug("Version " + getDescription().getVersion() + " Enabled!");
-
-            scheduleTasks();
-            CommandRegistrationManager.registerCommands();
-
+            // Do stuff with chunks then do tasks and commands <3
             placeStore = ChunkManagerFactory.getChunkManager(); // Get our ChunkletManager
+            
+            scheduleTasks();
+            
+            CommandRegistrationManager.registerCommands();
 
             if (Config.getInstance().getPTPCommandWorldPermissions()) {
                 Permissions.generateWorldTeleportPermissions();
@@ -189,8 +190,8 @@ public class mcMMO extends JavaPlugin {
             else {
                 getLogger().info("Please dont replace the jar-file while the server is active. Please stop the server then replace the jar-file! <3");
             }
-
-            getServer().getPluginManager().disablePlugin(this);
+            // this or are instance p ...
+            Bukkit.getServer().getPluginManager().disablePlugin(this);
         }
     }
 
@@ -471,10 +472,6 @@ public class mcMMO extends JavaPlugin {
         }
         else if (kickIntervalTicks > 0) {
             new PartyAutoKickTask().runTaskTimer(this, kickIntervalTicks, kickIntervalTicks);
-        }
-
-        if (getHolidayManager().nearingAprilFirst()) {
-            new CheckDateTask().runTaskTimer(this, 10L * Misc.TICK_CONVERSION_FACTOR, 1L * 60L * 60L * Misc.TICK_CONVERSION_FACTOR);
         }
 
         // Clear the registered XP data so players can earn XP again

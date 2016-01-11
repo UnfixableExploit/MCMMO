@@ -138,13 +138,6 @@
     </repositories>
     <dependencies>
         <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.8-R0.1-SNAPSHOT</version>
-            <type>jar</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit-dep</artifactId>
             <version>4.10</version>
@@ -160,6 +153,16 @@
             <artifactId>tomcat-jdbc</artifactId>
             <version>7.0.52</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+        	<groupId>org.spigotmc</groupId>
+        	<artifactId>spigot</artifactId>
+        	<version>1.8.8-R0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+        	<groupId>org.bukkit</groupId>
+        	<artifactId>bukkit</artifactId>
+        	<version>1.8-R0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <distributionManagement>

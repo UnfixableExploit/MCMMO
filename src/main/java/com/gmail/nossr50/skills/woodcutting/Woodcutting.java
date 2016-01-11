@@ -70,7 +70,8 @@ public final class Woodcutting {
      *
      * @param blockState Block being broken
      */
-    protected static void checkForDoubleDrop(BlockState blockState) {
+    @SuppressWarnings("deprecation")
+	protected static void checkForDoubleDrop(BlockState blockState) {
         if (mcMMO.getModManager().isCustomLog(blockState) && mcMMO.getModManager().getBlock(blockState).isDoubleDropEnabled()) {
             Misc.dropItems(blockState.getLocation(), blockState.getBlock().getDrops());
         }

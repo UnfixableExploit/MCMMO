@@ -24,7 +24,8 @@ public class Herbalism {
      * @param blockState The {@link BlockState} to check ability activation for
      * @return true if the ability was successful, false otherwise
      */
-    protected static boolean convertGreenTerraBlocks(BlockState blockState) {
+    @SuppressWarnings("deprecation")
+	protected static boolean convertGreenTerraBlocks(BlockState blockState) {
         switch (blockState.getType()) {
             case COBBLE_WALL:
                 blockState.setRawData((byte) 0x1);

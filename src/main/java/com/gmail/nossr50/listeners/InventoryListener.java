@@ -140,7 +140,8 @@ public class InventoryListener implements Listener {
         event.setExpToDrop(UserManager.getPlayer(player).getSmeltingManager().vanillaXPBoost(event.getExpToDrop()));
     }
 
-    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    @SuppressWarnings("deprecation")
+	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onInventoryClickEventNormal(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
 

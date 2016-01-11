@@ -19,7 +19,8 @@ public class Excavation {
      * @param blockState The {@link BlockState} of the block to check.
      * @return the list of treasures that could be found
      */
-    protected static List<ExcavationTreasure> getTreasures(BlockState blockState) {
+    @SuppressWarnings("deprecation")
+	protected static List<ExcavationTreasure> getTreasures(BlockState blockState) {
         switch (blockState.getType()) {
             case DIRT:
                 return blockState.getRawData() == 0x2 ? TreasureConfig.getInstance().excavationFromPodzol : TreasureConfig.getInstance().excavationFromDirt;

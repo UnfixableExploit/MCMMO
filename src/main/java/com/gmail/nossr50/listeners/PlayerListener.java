@@ -60,7 +60,6 @@ import com.gmail.nossr50.util.HardcoreManager;
 import com.gmail.nossr50.util.ItemUtils;
 import com.gmail.nossr50.util.Misc;
 import com.gmail.nossr50.util.MobHealthbarUtils;
-import com.gmail.nossr50.util.Motd;
 import com.gmail.nossr50.util.Permissions;
 import com.gmail.nossr50.util.player.UserManager;
 import com.gmail.nossr50.util.skills.SkillUtils;
@@ -301,8 +300,7 @@ public class PlayerListener implements Listener {
      *
      * @param event The event to modify
      */
-    @SuppressWarnings("deprecation")
-	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPlayerPickupItem(PlayerPickupItemEvent event) {
         Player player = event.getPlayer();
 
@@ -382,12 +380,8 @@ public class PlayerListener implements Listener {
         if (Misc.isNPCEntity(player)) {
             return;
         }
-
-        new PlayerProfileLoadingTask(player).runTaskLaterAsynchronously(mcMMO.p, 1); // 1 Tick delay to ensure the player is marked as online before we begin loading
-
-        if (Config.getInstance().getMOTDEnabled() && Permissions.motd(player)) {
-            Motd.displayAll(player);
-        }
+        // Rather then use 1 tick lets use 1 sec because #YOLO
+        new PlayerProfileLoadingTask(player).runTaskLaterAsynchronously(mcMMO.p, 20);
 
         if (plugin.isXPEventEnabled()) {
             player.sendMessage(LocaleLoader.getString("XPRate.Event", ExperienceConfig.getInstance().getExperienceGainsGlobalMultiplier()));
@@ -419,8 +413,7 @@ public class PlayerListener implements Listener {
      *
      * @param event The event to modify
      */
-    @SuppressWarnings("deprecation")
-	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onPlayerInteractLowest(PlayerInteractEvent event) {
         Player player = event.getPlayer();
 

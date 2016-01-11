@@ -33,7 +33,8 @@ public final class ChimaeraWing {
      *
      * @param player Player whose item usage to check
      */
-    public static void activationCheck(Player player) {
+    @SuppressWarnings("deprecation")
+	public static void activationCheck(Player player) {
         if (!Config.getInstance().getChimaeraEnabled()) {
             return;
         }
@@ -113,8 +114,7 @@ public final class ChimaeraWing {
         }
     }
 
-    @SuppressWarnings("deprecation")
-	public static void chimaeraExecuteTeleport() {
+    public static void chimaeraExecuteTeleport() {
         Player player = mcMMOPlayer.getPlayer();
 
         if (Config.getInstance().getChimaeraUseBedSpawn() && player.getBedSpawnLocation() != null) {

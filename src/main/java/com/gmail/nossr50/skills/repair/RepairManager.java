@@ -57,7 +57,8 @@ public class RepairManager extends SkillManager {
         togglePlacedAnvil();
     }
 
-    public void handleRepair(ItemStack item) {
+    @SuppressWarnings("deprecation")
+	public void handleRepair(ItemStack item) {
         Player player = getPlayer();
         Repairable repairable = mcMMO.getRepairableManager().getRepairable(item.getType());
 

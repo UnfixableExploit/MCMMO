@@ -269,7 +269,8 @@ public class SkillUtils {
         return getRepairAndSalvageQuantities(item, getRepairAndSalvageItem(item), (byte) -1);
     }
 
-    public static int getRepairAndSalvageQuantities(ItemStack item, Material repairMaterial, byte repairMetadata) {
+    @SuppressWarnings("deprecation")
+	public static int getRepairAndSalvageQuantities(ItemStack item, Material repairMaterial, byte repairMetadata) {
         // Workaround for Bukkit bug where damaged items would not return any recipes
         item = item.clone();
         item.setDurability((short) 0);

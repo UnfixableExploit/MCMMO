@@ -14,7 +14,7 @@ public class StickyPistonTrackerTask extends BukkitRunnable {
 
     public StickyPistonTrackerTask(BlockFace direction, Block block, Block movedBlock) {
         this.direction = direction;
-        this.block = block;
+        this.setBlock(block);
         this.movedBlock = movedBlock;
     }
 
@@ -33,4 +33,12 @@ public class StickyPistonTrackerTask extends BukkitRunnable {
         mcMMO.getPlaceStore().setFalse(movedBlock.getRelative(direction));
         mcMMO.getPlaceStore().setTrue(movedBlock);
     }
+
+	public Block getBlock() {
+		return block;
+	}
+
+	public void setBlock(Block block) {
+		this.block = block;
+	}
 }

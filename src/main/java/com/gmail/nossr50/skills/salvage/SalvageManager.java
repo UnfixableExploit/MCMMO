@@ -54,7 +54,8 @@ public class SalvageManager extends SkillManager {
         togglePlacedAnvil();
     }
 
-    public void handleSalvage(Location location, ItemStack item) {
+    @SuppressWarnings("deprecation")
+	public void handleSalvage(Location location, ItemStack item) {
         Player player = getPlayer();
 
         Salvageable salvageable = mcMMO.getSalvageableManager().getSalvageable(item.getType());

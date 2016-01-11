@@ -3,17 +3,15 @@ package com.gmail.nossr50.runnables.player;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-
 import com.gmail.nossr50.mcMMO;
 import com.gmail.nossr50.config.Config;
 import com.gmail.nossr50.datatypes.player.McMMOPlayer;
 import com.gmail.nossr50.datatypes.player.PlayerProfile;
 import com.gmail.nossr50.locale.LocaleLoader;
-import com.gmail.nossr50.util.Misc;
 import com.gmail.nossr50.util.player.UserManager;
 
 public class PlayerProfileLoadingTask extends BukkitRunnable {
-    private static final int MAX_TRIES = 5;
+    private static final int MAX_TRIES = 3;
     private final Player player;
     private int attempt = 0;
 

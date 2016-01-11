@@ -31,7 +31,8 @@ public class TrackedTamingEntity extends BukkitRunnable {
         }
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void run() {
         if (livingEntity.isValid()) {
             Location location = livingEntity.getLocation();

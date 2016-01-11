@@ -72,7 +72,8 @@ public class WoodcuttingManager extends SkillManager {
      *
      * @param blockState Block being broken
      */
-    public void processTreeFeller(BlockState blockState) {
+    @SuppressWarnings("deprecation")
+	public void processTreeFeller(BlockState blockState) {
         Player player = getPlayer();
         Set<BlockState> treeFellerBlocks = new HashSet<BlockState>();
 

@@ -23,7 +23,8 @@ public class FormulaConversionTask extends BukkitRunnable {
         this.formulaType = formulaType;
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void run() {
         int convertedUsers = 0;
         long startMillis = System.currentTimeMillis();

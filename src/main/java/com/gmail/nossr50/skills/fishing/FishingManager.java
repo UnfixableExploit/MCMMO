@@ -64,6 +64,7 @@ import com.gmail.nossr50.util.Permissions;
 import com.gmail.nossr50.util.skills.CombatUtils;
 import com.gmail.nossr50.util.skills.SkillUtils;
 
+@SuppressWarnings("deprecation")
 public class FishingManager extends SkillManager {
     private final long FISHING_COOLDOWN_SECONDS = 1000L;
 
