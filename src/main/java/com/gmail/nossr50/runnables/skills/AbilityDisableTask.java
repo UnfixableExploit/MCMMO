@@ -1,11 +1,8 @@
 package com.gmail.nossr50.runnables.skills;
 
-import org.bukkit.Chunk;
-import org.bukkit.World;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import com.gmail.nossr50.PacketMapChunk;
 import com.gmail.nossr50.mcMMO;
 import com.gmail.nossr50.config.Config;
 import com.gmail.nossr50.datatypes.player.McMMOPlayer;
@@ -25,7 +22,8 @@ public class AbilityDisableTask extends BukkitRunnable {
         this.ability = ability;
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void run() {
         if (!mcMMOPlayer.getAbilityMode(ability)) {
             return;
@@ -41,7 +39,21 @@ public class AbilityDisableTask extends BukkitRunnable {
 
             case BERSERK:
                 if (Config.getInstance().getRefreshChunksEnabled()) {
-                    resendChunkRadiusAt(player, 1);
+                	
+                	// Uodate the MMO Chunk
+                	Bukkit.getScheduler().runTaskAsynchronously(mcMMO.p, new Runnable() {
+                	    @Override
+                	    public void run() {
+                	    	// Using the bukkit api in async is very bad idea this is just for testing!
+                	    	Player p = mcMMOPlayer.getPlayer();
+                	    	p.sendMessage("Start of runnable");
+                        	int x = p.getLocation().getChunk().getX();
+                        	int z = p.getLocation().getChunk().getZ();
+                        	p.sendMessage("About to refresh the chunk");
+                        	p.getWorld().refreshChunk(x, z);
+                        	p.sendMessage("Updated the Chunk or Chunks");
+                	    }
+                	});
                 }
                 // Fallthrough
 
@@ -62,31 +74,5 @@ public class AbilityDisableTask extends BukkitRunnable {
 
         SkillUtils.sendSkillMessage(player, ability.getAbilityPlayerOff(player));
         new AbilityCooldownTask(mcMMOPlayer, ability).runTaskLaterAsynchronously(mcMMO.p, PerksUtils.handleCooldownPerks(player, ability.getCooldown()) * Misc.TICK_CONVERSION_FACTOR);
-    }
-
-    @SuppressWarnings("deprecation")
-	private void resendChunkRadiusAt(Player player, int radius) {
-    	// Taken from skyost class we added in :D
-    	//for(final Chunk chunk1 : mmochunk) {
-    	//    for(final Player online : Bukkit.getOnlinePlayers()) {
-    	//        new PacketMapChunk(chunk).send(player);
-    	//    }
-    	//    world.refreshChunk(chunk.getX(), chunk.getZ());
-    	//}
-    	
-        Chunk chunk = player.getLocation().getChunk();
-        World world = player.getWorld();
-        
-        int chunkX = chunk.getX();
-        int chunkZ = chunk.getZ();
-        
-        
-        for (int x = chunkX - radius; x < chunkX + radius; x++) {
-            for (int z = chunkZ - radius; z < chunkZ + radius; z++) {
-            	
-            	new PacketMapChunk(chunk).send(player);
-                world.refreshChunk(x, z);
-            }
-        }
     }
 }
