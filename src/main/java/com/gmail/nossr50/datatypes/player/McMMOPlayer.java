@@ -503,7 +503,7 @@ public class McMMOPlayer {
         }
 
         if (Config.getInstance().getLevelUpSoundsEnabled()) {
-            player.playSound(player.getLocation(), Sound.LEVEL_UP, Misc.LEVELUP_VOLUME, Misc.LEVELUP_PITCH);
+            player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, Misc.LEVELUP_VOLUME, Misc.LEVELUP_PITCH);
         }
 
         player.sendMessage(LocaleLoader.getString(StringUtils.getCapitalized(skillType.toString()) + ".Skillup", levelsGained, getSkillLevel(skillType)));
